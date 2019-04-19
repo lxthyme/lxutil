@@ -1,0 +1,17 @@
+{
+  "name": "lxutil",
+  "version": "1.0.0",
+  "description": "util packages for LXThyme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "util",
+    "swiper",
+    "mescroll",
+    "babel"
+  ],
+  "author": "LXThyme",
+  "license": "MIT"
+}
