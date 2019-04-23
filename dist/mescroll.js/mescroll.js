@@ -236,6 +236,7 @@
     // 鼠标或手指的按下事件
     me.touchstartEvent = function (e) {
       // debugger
+      console.log('touchstartEvent: ', e)
       if (me.isScrollTo) me.preventDefault(e); // 如果列表执行滑动事件,则阻止事件,优先执行scrollTo方法
 
       me.startPoint = me.getPoint(e); // 记录起点
@@ -266,7 +267,7 @@
 
     // 鼠标或手指的滑动事件
     me.touchmoveEvent = function (e) {
-      // console.log('E: ', e)
+      // console.log('touchmoveEvent: ', e)
       // debugger
       if (!me.startPoint) return;
 
@@ -372,7 +373,8 @@
     });
 
     // 鼠标或手指的离开事件
-    me.touchendEvent = function () {
+    me.touchendEvent = function (e) {
+      console.log('touchendEvent: ', e)
       // debugger
       // 如果下拉区域高度已改变,则需重置回来
       if (me.optDown.use && me.isMoveDown) {
@@ -1131,7 +1133,11 @@
     var dom;
     if (id) {
       if (typeof id === 'string') {
-        dom = document.getElementById(id); // 如果是String,则根据id查找
+        if (id.indexOf('#') >= 0 || id.indexOf('.') >= 0) {
+          dom = document.querySelector(id)
+        } else {
+          dom = document.getElementById(id); // 如果是String,则根据id查找
+        }
       } else if (id.nodeType) {
         dom = id; // 如果是dom对象,则直接赋值
       }
