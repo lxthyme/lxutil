@@ -1,6 +1,6 @@
 <template>
   <div ref="mescroll" class="mescroll">
-    <div>
+    <div class="mescroll-content">
       <slot></slot>
     </div>
   </div>
@@ -8,8 +8,8 @@
 
 <script>
 // 引入mescroll.min.js和mescroll.min.css
-import MeScroll from 'mescroll.js'
-import 'mescroll.js/mescroll.min.css'
+import MeScroll from './mescroll.js'
+import './mescroll.min.css'
 
 export default {
   name: 'MeScrollVue',
