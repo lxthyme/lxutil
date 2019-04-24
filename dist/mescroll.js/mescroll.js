@@ -25,8 +25,8 @@
     var me = this;
     me.version = '1.4.0'; // mescroll版本号
     me.isScrollBody = (!mescrollId || mescrollId === 'body'); // 滑动区域是否为body
-    me.scrollDom = me.isScrollBody ? document.body : me.getDomById(mescrollId); // MeScroll的滑动区域
-    // me.scrollDom = document.querySelector('.scroller'); // MeScroll的滑动区域
+    // me.scrollDom = me.isScrollBody ? document.body : me.getDomById(mescrollId); // MeScroll的滑动区域
+    me.scrollDom = me.isScrollBody ? document.body : (document.querySelector('.scroller') || me.getDomById(mescrollId)); // MeScroll的滑动区域
     if (!me.scrollDom) return;
 
     me.options = options || {}; // 配置
@@ -236,7 +236,7 @@
     // 鼠标或手指的按下事件
     me.touchstartEvent = function (e) {
       // debugger
-      console.log('touchstartEvent: ', e)
+      // console.log('touchstartEvent: ', e)
       if (me.isScrollTo) me.preventDefault(e); // 如果列表执行滑动事件,则阻止事件,优先执行scrollTo方法
 
       me.startPoint = me.getPoint(e); // 记录起点
@@ -248,10 +248,7 @@
       me.isKeepTop = scrollTop === 0; // 标记滚动条起点为0
       if (me.os.pc && scrollTop <= 0) {
         // 在顶部给PC端添加move事件
-        // me.scrollDom.addEventListener('mousemove', me.touchmoveEvent, {
-        //   passive: false
-        // });
-        document.querySelector('.scroller').addEventListener('mousemove', me.touchmoveEvent, {
+        me.scrollDom.addEventListener('mousemove', me.touchmoveEvent, {
           passive: false
         });
         document.ondragstart = function () { // 在顶部禁止PC端拖拽图片,避免与下拉刷新冲突
@@ -260,10 +257,8 @@
       }
     }
 
-    // me.scrollDom.addEventListener('mousedown', me.touchstartEvent); // PC端鼠标事件
-    // me.scrollDom.addEventListener('touchstart', me.touchstartEvent); // 移动端手指事件
-    document.querySelector('.scroller').addEventListener('mousedown', me.touchstartEvent); // PC端鼠标事件
-    document.querySelector('.scroller').addEventListener('touchstart', me.touchstartEvent); // 移动端手指事件
+    me.scrollDom.addEventListener('mousedown', me.touchstartEvent); // PC端鼠标事件
+    me.scrollDom.addEventListener('touchstart', me.touchstartEvent); // 移动端手指事件
 
     // 鼠标或手指的滑动事件
     me.touchmoveEvent = function (e) {
@@ -365,16 +360,13 @@
     }
 
     // 移动端手指的滑动事件
-    // me.scrollDom.addEventListener('touchmove', me.touchmoveEvent, {
-    //   passive: false
-    // });
-    document.querySelector('.scroller').addEventListener('touchmove', me.touchmoveEvent, {
+    me.scrollDom.addEventListener('touchmove', me.touchmoveEvent, {
       passive: false
     });
 
     // 鼠标或手指的离开事件
     me.touchendEvent = function (e) {
-      console.log('touchendEvent: ', e)
+      // console.log('touchendEvent: ', e)
       // debugger
       // 如果下拉区域高度已改变,则需重置回来
       if (me.optDown.use && me.isMoveDown) {
@@ -397,22 +389,17 @@
       }
 
       if (me.os.pc) {
-        // me.scrollDom.removeEventListener('mousemove', me.touchmoveEvent); // 移除pc端的move事件
-        document.querySelector('.scroller').removeEventListener('mousemove', me.touchmoveEvent); // 移除pc端的move事件
+        me.scrollDom.removeEventListener('mousemove', me.touchmoveEvent); // 移除pc端的move事件
         document.ondragstart = function () { // 解除PC端禁止拖拽图片
           return true;
         }
       }
     }
 
-    // me.scrollDom.addEventListener('mouseup', me.touchendEvent); // PC端鼠标抬起事件
-    // me.scrollDom.addEventListener('mouseleave', me.touchendEvent); // PC端鼠标离开事件
-    // me.scrollDom.addEventListener('touchend', me.touchendEvent); // 移动端手指事件
-    // me.scrollDom.addEventListener('touchcancel', me.touchendEvent); // 移动端系统停止跟踪触摸
-    document.querySelector('.scroller').addEventListener('mouseup', me.touchendEvent); // PC端鼠标抬起事件
-    document.querySelector('.scroller').addEventListener('mouseleave', me.touchendEvent); // PC端鼠标离开事件
-    document.querySelector('.scroller').addEventListener('touchend', me.touchendEvent); // 移动端手指事件
-    document.querySelector('.scroller').addEventListener('touchcancel', me.touchendEvent); // 移动端系统停止跟踪触摸
+    me.scrollDom.addEventListener('mouseup', me.touchendEvent); // PC端鼠标抬起事件
+    me.scrollDom.addEventListener('mouseleave', me.touchendEvent); // PC端鼠标离开事件
+    me.scrollDom.addEventListener('touchend', me.touchendEvent); // 移动端手指事件
+    me.scrollDom.addEventListener('touchcancel', me.touchendEvent); // 移动端系统停止跟踪触摸
 
     // 在页面中加入下拉布局
     if (me.optDown.use) {
@@ -421,7 +408,8 @@
       me.downwarp.innerHTML = '<div class="downwarp-content">' + me.optDown.htmlContent + '</div>';
       var downparent = me.optDown.warpId ? me.getDomById(me.optDown.warpId) : me.scrollDom;
       if (me.optDown.warpId && downparent) {
-        downparent.appendChild(me.downwarp);
+        // downparent.appendChild(me.downwarp);
+        downparent.insertBefore(me.downwarp, downparent.firstChild);
       } else {
         if (!downparent) downparent = me.scrollDom;
         downparent.insertBefore(me.downwarp, me.scrollDom.firstChild);
@@ -515,10 +503,8 @@
     me.upwarp.className = me.optUp.warpClass;
     var upparent;
     if (me.optUp.warpId) upparent = me.getDomById(me.optUp.warpId);
-    // if (!upparent) upparent = me.scrollDom;
-    if (!upparent) upparent = document.querySelector('.scroller');
+    if (!upparent) upparent = me.scrollDom;
     upparent.appendChild(me.upwarp);
-
     // 滚动监听
     me.preScrollY = 0;
     me.lazyStartTime = new Date().getTime();// 懒加载的初始间隔时间
@@ -576,8 +562,7 @@
     if (me.isScrollBody) {
       window.addEventListener('scroll', me.scrollEvent);
     } else {
-      // me.scrollDom.addEventListener('scroll', me.scrollEvent);
-      document.querySelector('.scroller').addEventListener('scroll', me.scrollEvent);
+      me.scrollDom.addEventListener('scroll', me.scrollEvent);
     }
 
     // 初始化完毕的回调
@@ -606,7 +591,11 @@
     var el = e.target;
     // 当前touch的元素及父元素是否要拦截touchmove事件
     var isPrevent = true;
-    while (el !== document.body && el !== document) {
+    if (!el) {
+      console.log('EL: ', el)
+      return
+    }
+    while (el && el !== document.body && el !== document) {
       var cls = el.classList;
       if (cls) {
         if (cls.contains('mescroll') || cls.contains('mescroll-touch')) {
@@ -1080,8 +1069,7 @@
 
   /* 滚动内容的高度 */
   MeScroll.prototype.getScrollHeight = function () {
-    // return this.scrollDom.scrollHeight;
-    return document.querySelector('.scroller').scrollHeight;
+    return this.scrollDom.scrollHeight;
   }
 
   /* 滚动容器的高度 */
@@ -1089,8 +1077,7 @@
     if (this.isScrollBody && document.compatMode === 'CSS1Compat') {
       return document.documentElement.clientHeight;
     } else {
-      // return this.scrollDom.clientHeight;
-      return document.querySelector('.scroller').clientHeight;
+      return this.scrollDom.clientHeight;
     }
   }
 
@@ -1104,10 +1091,7 @@
     if (this.isScrollBody) {
       return document.documentElement.scrollTop || document.body.scrollTop;
     } else {
-      // console.log('T: ', this.scrollDom.scrollTop)
-      // return this.scrollDom.scrollTop;
-      // console.log('T: ', document.querySelector('.scroller').scrollTop)
-      return document.querySelector('.scroller').scrollTop;
+      return this.scrollDom.scrollTop;
     }
   }
 
@@ -1146,6 +1130,19 @@
     return dom;
   }
 
+  MeScroll.prototype.getDomByClass = function (cls) {
+    var dom;
+    if (cls) {
+      if (typeof cls === 'string') {
+        dom = document.querySelector(cls); // 如果是String,则根据id查找
+      } else if (cls.nodeType) {
+        dom = cls; // 如果是dom对象,则直接赋值
+      }
+    }
+    if (!dom) console.error('the element with class as "' + cls + '" can not be found: document.querySelector("' + cls + '")==null');
+    return dom;
+  }
+
   /* 删除dom元素 */
   MeScroll.prototype.removeChild = function (dom) {
     if (dom) {
@@ -1160,30 +1157,21 @@
     var me = this;
 
     // 移除下拉布局,移除事件
-    // me.scrollDom.removeEventListener('touchstart', me.touchstartEvent); // 移动端手指事件
-    // me.scrollDom.removeEventListener('touchmove', me.touchmoveEvent); // 移动端手指事件
-    // me.scrollDom.removeEventListener('touchend', me.touchendEvent); // 移动端手指事件
-    // me.scrollDom.removeEventListener('touchcancel', me.touchendEvent); // 移动端手指事件
-    // me.scrollDom.removeEventListener('mousedown', me.touchstartEvent); // PC端鼠标事件
-    // me.scrollDom.removeEventListener('mousemove', me.touchmoveEvent); // PC端鼠标事件
-    // me.scrollDom.removeEventListener('mouseup', me.touchendEvent); // PC端鼠标抬起事件
-    // me.scrollDom.removeEventListener('mouseleave', me.touchendEvent); // PC端鼠标离开事件
-    document.querySelector('.scroller').removeEventListener('touchstart', me.touchstartEvent); // 移动端手指事件
-    document.querySelector('.scroller').removeEventListener('touchmove', me.touchmoveEvent); // 移动端手指事件
-    document.querySelector('.scroller').removeEventListener('touchend', me.touchendEvent); // 移动端手指事件
-    document.querySelector('.scroller').removeEventListener('touchcancel', me.touchendEvent); // 移动端手指事件
-    document.querySelector('.scroller').removeEventListener('mousedown', me.touchstartEvent); // PC端鼠标事件
-    document.querySelector('.scroller').removeEventListener('mousemove', me.touchmoveEvent); // PC端鼠标事件
-    document.querySelector('.scroller').removeEventListener('mouseup', me.touchendEvent); // PC端鼠标抬起事件
-    document.querySelector('.scroller').removeEventListener('mouseleave', me.touchendEvent); // PC端鼠标离开事件
+    me.scrollDom.removeEventListener('touchstart', me.touchstartEvent); // 移动端手指事件
+    me.scrollDom.removeEventListener('touchmove', me.touchmoveEvent); // 移动端手指事件
+    me.scrollDom.removeEventListener('touchend', me.touchendEvent); // 移动端手指事件
+    me.scrollDom.removeEventListener('touchcancel', me.touchendEvent); // 移动端手指事件
+    me.scrollDom.removeEventListener('mousedown', me.touchstartEvent); // PC端鼠标事件
+    me.scrollDom.removeEventListener('mousemove', me.touchmoveEvent); // PC端鼠标事件
+    me.scrollDom.removeEventListener('mouseup', me.touchendEvent); // PC端鼠标抬起事件
+    me.scrollDom.removeEventListener('mouseleave', me.touchendEvent); // PC端鼠标离开事件
     me.removeChild(me.downwarp); // 下拉布局
 
     // 移除上拉布局,回到顶部按钮,移除事件
     if (me.isScrollBody) {
       window.removeEventListener('scroll', me.scrollEvent); // window的滚动事件
     } else {
-      // me.scrollDom.removeEventListener('scroll', me.scrollEvent); // div的滚动事件
-      document.querySelector('.scroller').removeEventListener('scroll', me.scrollEvent); // div的滚动事件
+      me.scrollDom.removeEventListener('scroll', me.scrollEvent); // div的滚动事件
     }
     me.removeChild(me.upwarp); // 上拉布局
     me.removeChild(me.toTopBtn); // 回到顶部按钮
