@@ -32,6 +32,13 @@ export default {
     this.$emit('init', this.mescroll) // init回调mescroll对象
   },
   methods: {
+    resetMescroll() {
+      this.mescroll = new MeScroll(this.$refs.mescroll, {
+          up: this.up,
+          down: this.down
+        })
+        this.$emit('init', this.mescroll) // init回调mescroll对象
+    },
     beforeRouteEnter () {
       if (this.mescroll) {
         // 滚动到之前列表的位置
