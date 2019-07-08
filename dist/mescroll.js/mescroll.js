@@ -135,6 +135,7 @@
   MeScroll.prototype.extendUpScroll = function (optUp) {
     // 是否为PC端,如果是scrollbar端,默认自定义滚动条
     var isPC = this.os.pc;
+    // debugger
     // 上拉加载的配置
     MeScroll.extend(optUp, {
       use: true, // 是否启用上拉加载; 默认true
@@ -143,11 +144,11 @@
       isBoth: false, // 上拉加载时,如果滑动到列表顶部是否可以同时触发下拉刷新;默认false,两者不可同时触发;
       isBounce: true, // 是否允许ios的bounce回弹;默认true,允许; 如果设置为false,则除了mescroll, mescroll-touch, mescroll-touch-x, mescroll-touch-y能够接收touchmove事件,其他部分均无法滑动,能够有效禁止bounce
       callback: null, // 上拉加载的回调;function(page,mescroll){ }
-      page: {
-        num: 0, // 当前页码,默认0,回调之前会加1,即callback(page)会从1开始
-        size: 10, // 每页数据的数量
-        time: null // 加载第一页数据服务器返回的时间; 防止用户翻页时,后台新增了数据从而导致下一页数据重复;
-      },
+      // page: {
+      //   num: 0, // 当前页码,默认0,回调之前会加1,即callback(page)会从1开始
+      //   size: 10, // 每页数据的数量
+      //   time: null // 加载第一页数据服务器返回的时间; 防止用户翻页时,后台新增了数据从而导致下一页数据重复;
+      // },
       noMoreSize: 5, // 如果列表已无数据,可设置列表的总数量要大于等于5条才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看
       offset: 100, // 列表滚动到距离底部小于100px,即可触发上拉加载的回调
       toTop: {
@@ -637,8 +638,9 @@
   MeScroll.prototype.triggerUpScroll = function () {
     if (this.optUp.callback && !this.isUpScrolling) {
       this.showUpScroll(); // 上拉加载中...
-      this.optUp.page.num++; // 预先加一页,如果失败则减回
+      // this.optUp.page.num++; // 预先加一页,如果失败则减回
       this.isUpAutoLoad = true; // 标记上拉已经自动执行过,避免初始化时多次触发上拉回调
+      // debugger
       this.optUp.callback(this.optUp.page, this); // 执行回调,联网加载数据
     }
   }
@@ -665,6 +667,7 @@
     if (displayAble) {
       this.upwarp.style.display = 'none'; // 通过display:none隐藏: 优点隐藏后不占位,缺点列表快速滑动到底部不能及时显示加载中
     } else {
+      this.upwarp.style.display = 'block';
       this.upwarp.style.visibility = 'hidden'; // 通过visibility:hidden的方式隐藏,优点当列表快速滑动到底部能及时显示加载中,缺点隐藏后会占位
     }
     this.upwarp.classList.remove(this.optUp.hardwareClass); // 移除硬件加速样式
@@ -690,36 +693,36 @@
      * 2.传参true, 则显示下拉刷新的进度布局
      * 3.传参false,则不显示上拉和下拉的进度 (常用于静默更新列表数据)
      */
-  MeScroll.prototype.resetUpScroll = function (isShowLoading) {
-    if (this.optUp && this.optUp.use) {
-      var page = this.optUp.page;
-      this.prePageNum = page.num; // 缓存重置前的页码,加载失败可退回
-      this.prePageTime = page.time; // 缓存重置前的时间,加载失败可退回
-      page.num = 1; // 重置为第一页
-      page.time = null; // 重置时间为空
-      if (!this.isDownScrolling && isShowLoading !== false) { // 如果不是下拉刷新触发的resetUpScroll并且不配置列表静默更新,则显示进度;
-        if (isShowLoading == null) {
-          this.removeEmpty(); // 移除空布局
-          this.clearDataList(); // 先清空列表数据,才能显示到上拉加载的布局
-          this.showUpScroll(); // 不传参,默认显示上拉加载的进度布局
-        } else {
-          this.showDownScroll(); // 传true,显示下拉刷新的进度布局,不清空列表
-        }
-      }
-      this.isUpAutoLoad = true; // 标记上拉已经自动执行过,避免初始化时多次触发上拉回调
-      this.optUp.callback && this.optUp.callback(page, this); // 执行上拉回调
-    }
-  }
+  // MeScroll.prototype.resetUpScroll = function (isShowLoading) {
+  //   if (this.optUp && this.optUp.use) {
+  //     // var page = this.optUp.page;
+  //     // this.prePageNum = page.num; // 缓存重置前的页码,加载失败可退回
+  //     // this.prePageTime = page.time; // 缓存重置前的时间,加载失败可退回
+  //     // page.num = 1; // 重置为第一页
+  //     // page.time = null; // 重置时间为空
+  //     if (!this.isDownScrolling && isShowLoading !== false) { // 如果不是下拉刷新触发的resetUpScroll并且不配置列表静默更新,则显示进度;
+  //       if (isShowLoading == null) {
+  //         this.removeEmpty(); // 移除空布局
+  //         this.clearDataList(); // 先清空列表数据,才能显示到上拉加载的布局
+  //         this.showUpScroll(); // 不传参,默认显示上拉加载的进度布局
+  //       } else {
+  //         this.showDownScroll(); // 传true,显示下拉刷新的进度布局,不清空列表
+  //       }
+  //     }
+  //     this.isUpAutoLoad = true; // 标记上拉已经自动执行过,避免初始化时多次触发上拉回调
+  //     this.optUp.callback && this.optUp.callback(page, this); // 执行上拉回调
+  //   }
+  // }
 
   /* 设置page.num的值 */
-  MeScroll.prototype.setPageNum = function (num) {
-    this.optUp.page.num = num - 1;
-  }
+  // MeScroll.prototype.setPageNum = function (num) {
+  //   this.optUp.page.num = num - 1;
+  // }
 
   /* 设置page.size的值 */
-  MeScroll.prototype.setPageSize = function (size) {
-    this.optUp.page.size = size;
-  }
+  // MeScroll.prototype.setPageSize = function (size) {
+  //   this.optUp.page.size = size;
+  // }
 
   /* 清空上拉加载的数据列表 */
   MeScroll.prototype.clearDataList = function () {
@@ -735,25 +738,25 @@
      * totalPage: 总页数(必传)
      * systime: 服务器时间 (可空)
      */
-  MeScroll.prototype.endByPage = function (dataSize, totalPage, systime) {
-    var hasNext;
-    if (this.optUp.use && totalPage != null) hasNext = this.optUp.page.num < totalPage; // 是否还有下一页
-    this.endSuccess(dataSize, hasNext, systime);
-  }
+  // MeScroll.prototype.endByPage = function (dataSize, totalPage, systime) {
+  //   var hasNext;
+  //   if (this.optUp.use && totalPage != null) hasNext = this.optUp.page.num < totalPage; // 是否还有下一页
+  //   this.endSuccess(dataSize, hasNext, systime);
+  // }
 
   /* 联网回调成功,结束下拉刷新和上拉加载
      * dataSize: 当前页的数据量(必传)
      * totalSize: 列表所有数据总数量(必传)
      * systime: 服务器时间 (可空)
      */
-  MeScroll.prototype.endBySize = function (dataSize, totalSize, systime) {
-    var hasNext;
-    if (this.optUp.use && totalSize != null) {
-      var loadSize = (this.optUp.page.num - 1) * this.optUp.page.size + dataSize; // 已加载的数据总数
-      hasNext = loadSize < totalSize; // 是否还有下一页
-    }
-    this.endSuccess(dataSize, hasNext, systime);
-  }
+  // MeScroll.prototype.endBySize = function (dataSize, totalSize, systime) {
+  //   var hasNext;
+  //   if (this.optUp.use && totalSize != null) {
+  //     var loadSize = (this.optUp.page.num - 1) * this.optUp.page.size + dataSize; // 已加载的数据总数
+  //     hasNext = loadSize < totalSize; // 是否还有下一页
+  //   }
+  //   this.endSuccess(dataSize, hasNext, systime);
+  // }
 
   /* 联网回调成功,结束下拉刷新和上拉加载
      * dataSize: 当前页的数据个数(不是所有页的数据总和),用于上拉加载判断是否还有下一页.如果不传,则会判断还有下一页
@@ -764,7 +767,7 @@
     var me = this;
     // 结束下拉刷新
     if (me.isDownScrolling) me.endDownScroll();
-
+    // debugger
     // 结束上拉加载
     if (me.optUp.use) {
       var isShowNoMore; // 是否已无更多数据
@@ -776,7 +779,8 @@
           me.clearDataList(); // 自动清空第一页列表数据
           if (systime) me.optUp.page.time = systime; // 设置加载列表数据第一页的时间
         }
-        if (dataSize < pageSize || hasNext === false) {
+        // if (dataSize < pageSize || hasNext === false) {
+        if (hasNext === false) {
           // 返回的数据不满一页时,则说明已无更多数据
           me.optUp.hasNext = false;
           if (dataSize === 0 && pageNum === 1) {
@@ -813,21 +817,42 @@
     }
   }
 
+  MeScroll.prototype.endSuccess2 = function (hasNext, isHidden) {
+    var me = this;
+    // 结束下拉刷新
+    if (me.isDownScrolling) me.endDownScroll();
+    // debugger
+    // 结束上拉加载
+    (hasNext === null || hasNext === undefined) && (hasNext = true)
+    (isHidden === null || isHidden === undefined) && (isHidden = false)
+    const showNoMore = !hasNext && !isHidden
+    !showNoMore && (isHidden = true)
+    console.log('hasNext: ', hasNext, '\t\tisHidden: ', isHidden, '\t\tshowNoMore: ', showNoMore)
+    if (me.optUp.use) {
+      me.optUp.hasNext = hasNext
+      me.endUpScroll(showNoMore, isHidden);
+    }
+  }
+
   /* 回调失败,结束下拉刷新和上拉加载 */
   MeScroll.prototype.endErr = function () {
     // 结束下拉,回调失败重置回原来的页码和时间
     if (this.isDownScrolling) {
-      var page = this.optUp.page;
-      if (page && this.prePageNum) {
-        page.num = this.prePageNum;
-        page.time = this.prePageTime;
-      }
       this.endDownScroll();
     }
     // 结束上拉,回调失败重置回原来的页码
     if (this.isUpScrolling) {
-      this.optUp.page.num--;
       this.endUpScroll(false);
+    }
+  }
+  MeScroll.prototype.endErr2 = function (hasNext, isHidden) {
+    // 结束下拉,回调失败重置回原来的页码和时间
+    if (this.isDownScrolling) {
+      this.endDownScroll();
+    }
+    // 结束上拉,回调失败重置回原来的页码
+    if (this.isUpScrolling) {
+      this.endUpScroll(hasNext, isHidden);
     }
   }
 
@@ -844,45 +869,45 @@
   }
 
   /* 锁定上拉加载:isLock=ture,null锁定;isLock=false解锁 */
-  MeScroll.prototype.lockUpScroll = function (isLock) {
-    if (isLock == null) isLock = true;
-    this.optUp.isLock = isLock;
-  }
+  // MeScroll.prototype.lockUpScroll = function (isLock) {
+  //   if (isLock == null) isLock = true;
+  //   this.optUp.isLock = isLock;
+  // }
 
   /* --------无任何数据的空布局-------- */
-  MeScroll.prototype.showEmpty = function () {
-    var me = this;
-    var optEmpty = me.optUp.empty; // 空布局的配置
-    var warpId = optEmpty.warpId || me.optUp.clearEmptyId; // 优先使用warpId
-    if (warpId == null) return;
-    var emptyWarp = me.getDomById(warpId) // 要显示空布局的位置
-    if (emptyWarp) {
-      me.removeEmpty(); // 先移除,避免重复加入
-      // 初始化无任何数据的空布局
-      var str = '';
-      if (optEmpty.icon) str += '<img class="empty-icon" src="' + optEmpty.icon + '"/>'; // 图标
-      if (optEmpty.tip) str += '<p class="empty-tip">' + optEmpty.tip + '</p>'; // 提示
-      if (optEmpty.btntext) str += '<p class="empty-btn">' + optEmpty.btntext + '</p>'; // 按钮
-      me.emptyDom = document.createElement('div');
-      me.emptyDom.className = 'mescroll-empty';
-      me.emptyDom.innerHTML = str;
-      emptyWarp.appendChild(me.emptyDom);
-      if (optEmpty.btnClick) { // 点击按钮的回调
-        var emptyBtn = me.emptyDom.getElementsByClassName('empty-btn')[0];
-        if (optEmpty.supportTap) {
-          emptyBtn.addEventListener('tap', function (e) {
-            e.stopPropagation();
-            me.preventDefault(e)
-            optEmpty.btnClick();
-          })
-        } else {
-          emptyBtn.onclick = function () {
-            optEmpty.btnClick();
-          }
-        }
-      }
-    }
-  }
+  // MeScroll.prototype.showEmpty = function () {
+  //   var me = this;
+  //   var optEmpty = me.optUp.empty; // 空布局的配置
+  //   var warpId = optEmpty.warpId || me.optUp.clearEmptyId; // 优先使用warpId
+  //   if (warpId == null) return;
+  //   var emptyWarp = me.getDomById(warpId) // 要显示空布局的位置
+  //   if (emptyWarp) {
+  //     me.removeEmpty(); // 先移除,避免重复加入
+  //     // 初始化无任何数据的空布局
+  //     var str = '';
+  //     if (optEmpty.icon) str += '<img class="empty-icon" src="' + optEmpty.icon + '"/>'; // 图标
+  //     if (optEmpty.tip) str += '<p class="empty-tip">' + optEmpty.tip + '</p>'; // 提示
+  //     if (optEmpty.btntext) str += '<p class="empty-btn">' + optEmpty.btntext + '</p>'; // 按钮
+  //     me.emptyDom = document.createElement('div');
+  //     me.emptyDom.className = 'mescroll-empty';
+  //     me.emptyDom.innerHTML = str;
+  //     emptyWarp.appendChild(me.emptyDom);
+  //     if (optEmpty.btnClick) { // 点击按钮的回调
+  //       var emptyBtn = me.emptyDom.getElementsByClassName('empty-btn')[0];
+  //       if (optEmpty.supportTap) {
+  //         emptyBtn.addEventListener('tap', function (e) {
+  //           e.stopPropagation();
+  //           me.preventDefault(e)
+  //           optEmpty.btnClick();
+  //         })
+  //       } else {
+  //         emptyBtn.onclick = function () {
+  //           optEmpty.btnClick();
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
   /* 移除空布局 */
   MeScroll.prototype.removeEmpty = function () {
     this.removeChild(this.emptyDom);
