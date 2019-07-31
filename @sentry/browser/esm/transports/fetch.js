@@ -16,6 +16,18 @@ var FetchTransport = /** @class */ (function (_super) {
         const p = {
             loginfo: JSON.stringify(event)
         }
+        let headers = {}
+        if (window.login) {
+            headers = {
+                "appkey": window.login.getStoreKey('key_secret'),
+                "appsecret": window.login.getStoreSecrect('key_secret'),
+                "serial-number": window.login.checkDeviceUUID(),
+                "lang": "en",
+                "login": window.login.getLogin(),
+                "version": "3.6.1",
+                "Content-Type": "application/json"
+            }
+        }
         var defaultOptions = {
             body: JSON.stringify(p),
             method: 'POST',
@@ -24,15 +36,7 @@ var FetchTransport = /** @class */ (function (_super) {
             // It doesn't. And it throw exception instead of ignoring this parameter...
             // REF: https://github.com/getsentry/raven-js/issues/1233
             referrerPolicy: (supportsReferrerPolicy() ? 'origin' : ''),
-            headers: {
-                "appkey": app.$userLogin.getStoreKey('key_secret'),
-                "appsecret": app.$userLogin.getStoreSecrect('key_secret'),
-                "serial-number": app.$userLogin.checkDeviceUUID(),
-                "lang": "en",
-                "login": app.$userLogin.getLogin(),
-                "version": "3.6.1",
-                "Content-Type": "application/json"
-            }
+            headers: headers
         };
         return this._buffer.add(global.fetch(this.url, defaultOptions).then(function (response) { return ({
             status: Status.fromHttpCode(response.status),
