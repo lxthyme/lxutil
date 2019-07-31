@@ -1,0 +1,77 @@
+import { getGlobalObject, isPlainObject, logger } from '@sentry/utils';
+/** JSDoc */
+var Vue = /** @class */ (function () {
+    /**
+     * @inheritDoc
+     */
+    function Vue(options) {
+        if (options === void 0) { options = {}; }
+        /**
+         * @inheritDoc
+         */
+        this.name = Vue.id;
+        /**
+         * When set to false, Sentry will suppress reporting all props data
+         * from your Vue components for privacy concerns.
+         */
+        this._attachProps = true;
+        // tslint:disable-next-line: no-unsafe-any
+        this._Vue = options.Vue || getGlobalObject().Vue;
+        if (options.attachProps === false) {
+            this._attachProps = false;
+        }
+    }
+    /** JSDoc */
+    Vue.prototype._formatComponentName = function (vm) {
+        // tslint:disable:no-unsafe-any
+        if (vm.$root === vm) {
+            return 'root instance';
+        }
+        var name = vm._isVue ? vm.$options.name || vm.$options._componentTag : vm.name;
+        return ((name ? "component <" + name + ">" : 'anonymous component') +
+            (vm._isVue && vm.$options.__file ? " at " + vm.$options.__file : ''));
+    };
+    /**
+     * @inheritDoc
+     */
+    Vue.prototype.setupOnce = function (_, getCurrentHub) {
+        // tslint:disable:no-unsafe-any
+        var _this = this;
+        if (!this._Vue || !this._Vue.config) {
+            logger.error('VueIntegration is missing a Vue instance');
+            return;
+        }
+        var oldOnError = this._Vue.config.errorHandler;
+        this._Vue.config.errorHandler = function (error, vm, info) {
+            var metadata = {};
+            if (isPlainObject(vm)) {
+                metadata.componentName = _this._formatComponentName(vm);
+                if (_this._attachProps) {
+                    metadata.propsData = vm.$options.propsData;
+                }
+            }
+            if (info !== void 0) {
+                metadata.lifecycleHook = info;
+            }
+            if (getCurrentHub().getIntegration(Vue)) {
+                // This timeout makes sure that any breadcrumbs are recorded before sending it off the sentry
+                setTimeout(function () {
+                    getCurrentHub().withScope(function (scope) {
+                        scope.setContext('vue', metadata);
+                        getCurrentHub().captureException(error);
+                    });
+                });
+            }
+            if (typeof oldOnError === 'function') {
+                oldOnError.call(_this._Vue, error, vm, info);
+            }
+        };
+    };
+    /**
+     * @inheritDoc
+     */
+    Vue.id = 'Vue';
+    return Vue;
+}());
+export { Vue };
+//# sourceMappingURL=vue.js.map
