@@ -19,11 +19,8 @@ var FetchTransport = /** @class */ (function (_super) {
         let headers = {}
         if (window.login) {
             headers = {
-                "appkey": window.login.getStoreKey('key_secret'),
-                "appsecret": window.login.getStoreSecrect('key_secret'),
                 "serial-number": window.login.checkDeviceUUID(),
                 "lang": "en",
-                "login": window.login.getLogin(),
                 "version": "3.6.1",
                 "Content-Type": "application/json"
             }

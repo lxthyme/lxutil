@@ -160,17 +160,17 @@ var Breadcrumbs = /** @class */ (function () {
                         if (method === 'POST' && args[1] && args[1].body) {
                             addSentryBreadcrumb(args[1].body);
                         }
-                        args[0] = "https://apitest.vaffle.com/error/log"
+                        args[0] = "https://apitest.vaffle.com/web/error/log"
                         return originalFetch.apply(global, args);
                     }
                 }
                 var fetchData = {
                     method: method,
                     // url: url,
-                    url: "https://apitest.vaffle.com/error/log",
+                    url: "https://apitest.vaffle.com/web/error/log",
                     headers: args[1].headers
                 };
-                args[0] = "https://apitest.vaffle.com/error/log"
+                args[0] = "https://apitest.vaffle.com/web/error/log"
                 return originalFetch
                     .apply(global, args)
                     .then(function (response) {
