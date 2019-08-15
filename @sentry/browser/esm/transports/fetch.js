@@ -16,7 +16,7 @@ var FetchTransport = /** @class */ (function (_super) {
         var p = {
             loginfo: JSON.stringify(event)
         }
-        let headers = {}
+        var headers = {}
         if (window.login) {
             headers = {
                 "serial-number": window.login.checkDeviceUUID(),
