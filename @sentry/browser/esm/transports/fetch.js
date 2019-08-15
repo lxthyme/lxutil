@@ -13,7 +13,7 @@ var FetchTransport = /** @class */ (function (_super) {
      * @inheritDoc
      */
     FetchTransport.prototype.sendEvent = function (event) {
-        const p = {
+        var p = {
             loginfo: JSON.stringify(event)
         }
         let headers = {}
