@@ -827,7 +827,7 @@
     (isHidden === null || isHidden === undefined) && (isHidden = false)
     const showNoMore = !hasNext && !isHidden
     !showNoMore && (isHidden = true)
-    console.log('hasNext: ', hasNext, '\t\tisHidden: ', isHidden, '\t\tshowNoMore: ', showNoMore)
+    // console.log('hasNext: ', hasNext, '\t\tisHidden: ', isHidden, '\t\tshowNoMore: ', showNoMore)
     if (me.optUp.use) {
       me.optUp.hasNext = hasNext
       me.endUpScroll(showNoMore, isHidden);
