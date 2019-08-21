@@ -1,8 +1,28 @@
 import * as tslib_1 from "tslib";
-import { API, getCurrentHub } from '@sentry/core';
-import { Severity } from '@sentry/types';
-import { fill, getEventDescription, getGlobalObject, isString, logger, normalize, parseUrl, safeJoin, supportsHistory, supportsNativeFetch, } from '@sentry/utils';
-import { breadcrumbEventHandler, keypressEventHandler, wrap } from '../helpers';
+import {
+    API,
+    getCurrentHub
+} from '@sentry/core';
+import {
+    Severity
+} from '@sentry/types';
+import {
+    fill,
+    getEventDescription,
+    getGlobalObject,
+    isString,
+    logger,
+    normalize,
+    parseUrl,
+    safeJoin,
+    supportsHistory,
+    supportsNativeFetch,
+} from '@sentry/utils';
+import {
+    breadcrumbEventHandler,
+    keypressEventHandler,
+    wrap
+} from '../helpers';
 var global = getGlobalObject();
 var lastHref;
 /** Default Breadcrumbs instrumentations */
@@ -15,7 +35,14 @@ var Breadcrumbs = /** @class */ (function () {
          * @inheritDoc
          */
         this.name = Breadcrumbs.id;
-        this._options = tslib_1.__assign({ console: true, dom: true, fetch: true, history: true, sentry: true, xhr: true }, options);
+        this._options = tslib_1.__assign({
+            console: true,
+            dom: true,
+            fetch: true,
+            history: true,
+            sentry: true,
+            xhr: true
+        }, options);
     }
     /** JSDoc */
     Breadcrumbs.prototype._instrumentConsole = function () {
@@ -95,8 +122,7 @@ var Breadcrumbs = /** @class */ (function () {
                                 };
                             });
                         }
-                    }
-                    else {
+                    } else {
                         if (eventName === 'click') {
                             breadcrumbEventHandler('click', true)(this);
                         }
@@ -112,8 +138,7 @@ var Breadcrumbs = /** @class */ (function () {
                     var callback = fn;
                     try {
                         callback = callback && (callback.__sentry_wrapped__ || callback);
-                    }
-                    catch (e) {
+                    } catch (e) {
                         // ignore, accessing __sentry_wrapped__ will throw in some Selenium environments
                     }
                     return original.call(this, eventName, callback, options);
@@ -137,14 +162,12 @@ var Breadcrumbs = /** @class */ (function () {
                 var url;
                 if (typeof fetchInput === 'string') {
                     url = fetchInput;
-                }
-                else if ('Request' in global && fetchInput instanceof Request) {
+                } else if ('Request' in global && fetchInput instanceof Request) {
                     url = fetchInput.url;
                     if (fetchInput.method) {
                         method = fetchInput.method;
                     }
-                }
-                else {
+                } else {
                     url = String(fetchInput);
                 }
                 if (args[1] && args[1].method) {
@@ -152,6 +175,14 @@ var Breadcrumbs = /** @class */ (function () {
                 }
                 var client = getCurrentHub().getClient();
                 var dsn = client && client.getDsn();
+                var origin_t = window.location.origin
+                var host = ''
+                if (host.indexOf('api') >= 0) {
+                    host = 'https://api.vaffle.com'
+                } else {
+                    host = 'https://apitest.vaffle.com'
+                }
+                var href_t = host + '/web/error/log'
                 if (dsn) {
                     var filterUrl = new API(dsn).getStoreEndpoint();
                     // if Sentry key appears in URL, don't capture it as a request
@@ -160,43 +191,43 @@ var Breadcrumbs = /** @class */ (function () {
                         if (method === 'POST' && args[1] && args[1].body) {
                             addSentryBreadcrumb(args[1].body);
                         }
-                        args[0] = "https://apitest.vaffle.com/web/error/log"
+                        args[0] = href_t
                         return originalFetch.apply(global, args);
                     }
                 }
                 var fetchData = {
                     method: method,
                     // url: url,
-                    url: "https://apitest.vaffle.com/web/error/log",
+                    url: href_t,
                     headers: args[1].headers
                 };
-                args[0] = "https://apitest.vaffle.com/web/error/log"
+                args[0] = href_t
                 return originalFetch
                     .apply(global, args)
                     .then(function (response) {
-                    fetchData.status_code = response.status;
-                    Breadcrumbs.addBreadcrumb({
-                        category: 'fetch',
-                        data: fetchData,
-                        type: 'http',
-                    }, {
-                        input: args,
-                        response: response,
-                    });
-                    return response;
-                })
+                        fetchData.status_code = response.status;
+                        Breadcrumbs.addBreadcrumb({
+                            category: 'fetch',
+                            data: fetchData,
+                            type: 'http',
+                        }, {
+                            input: args,
+                            response: response,
+                        });
+                        return response;
+                    })
                     .catch(function (error) {
-                    Breadcrumbs.addBreadcrumb({
-                        category: 'fetch',
-                        data: fetchData,
-                        level: Severity.Error,
-                        type: 'http',
-                    }, {
-                        error: error,
-                        input: args,
+                        Breadcrumbs.addBreadcrumb({
+                            category: 'fetch',
+                            data: fetchData,
+                            level: Severity.Error,
+                            type: 'http',
+                        }, {
+                            error: error,
+                            input: args,
+                        });
+                        throw error;
                     });
-                    throw error;
-                });
             };
         });
     };
@@ -346,8 +377,7 @@ var Breadcrumbs = /** @class */ (function () {
                             if (xhr.__sentry_xhr__) {
                                 xhr.__sentry_xhr__.status_code = xhr.status;
                             }
-                        }
-                        catch (e) {
+                        } catch (e) {
                             /* do nothing */
                         }
                         Breadcrumbs.addBreadcrumb({
@@ -375,8 +405,7 @@ var Breadcrumbs = /** @class */ (function () {
                             },
                         }, onreadystatechangeHandler);
                     });
-                }
-                else {
+                } else {
                     // if onreadystatechange wasn't actually set by the page on this xhr, we
                     // are free to set our own and capture the breadcrumb
                     xhr.onreadystatechange = onreadystatechangeHandler;
@@ -426,7 +455,9 @@ var Breadcrumbs = /** @class */ (function () {
     Breadcrumbs.id = 'Breadcrumbs';
     return Breadcrumbs;
 }());
-export { Breadcrumbs };
+export {
+    Breadcrumbs
+};
 /** JSDoc */
 function addSentryBreadcrumb(serializedData) {
     // There's always something that can go wrong with deserialization...
@@ -440,8 +471,7 @@ function addSentryBreadcrumb(serializedData) {
         }, {
             event: event_1,
         });
-    }
-    catch (_oO) {
+    } catch (_oO) {
         logger.error('Error while adding sentry type breadcrumb');
     }
 }
