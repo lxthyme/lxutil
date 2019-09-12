@@ -1,4 +1,4 @@
-import { keysToEventMessage, normalizeToSize } from '@sentry/utils';
+import { keysToEventMessage, normalizeToSize } from 'lxutil/@sentry/utils';
 import { _computeStackTrace } from './tracekit';
 var STACKTRACE_LIMIT = 50;
 /**

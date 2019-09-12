@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var core_1 = require("@sentry/core");
-var utils_1 = require("@sentry/utils");
+var core_1 = require("lxutil/@sentry/core");
+var utils_1 = require("lxutil/@sentry/utils");
 var backend_1 = require("./backend");
 var version_1 = require("./version");
 /**

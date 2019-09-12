@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { getGlobalObject, supportsReportingObserver } from '@sentry/utils';
+import { getGlobalObject, supportsReportingObserver } from 'lxutil/@sentry/utils';
 /** JSDoc */
 var ReportTypes;
 (function (ReportTypes) {

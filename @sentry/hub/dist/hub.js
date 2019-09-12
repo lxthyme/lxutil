@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 var scope_1 = require("./scope");
 /**
  * API compatibility version of this hub.

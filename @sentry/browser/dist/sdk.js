@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@sentry/core");
-var utils_1 = require("@sentry/utils");
+var core_1 = require("lxutil/@sentry/core");
+var utils_1 = require("lxutil/@sentry/utils");
 var client_1 = require("./client");
 var helpers_1 = require("./helpers");
 var integrations_1 = require("./integrations");

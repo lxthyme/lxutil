@@ -1,4 +1,4 @@
-import { Status } from '@sentry/types';
+import { Status } from 'lxutil/@sentry/types';
 /** Noop transport */
 var NoopTransport = /** @class */ (function () {
     function NoopTransport() {

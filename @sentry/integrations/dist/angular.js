@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 // See https://github.com/angular/angular.js/blob/v1.4.7/src/minErr.js
 var angularPattern = /^\[((?:[$a-zA-Z0-9]+:)?(?:[$a-zA-Z0-9]+))\] (.*?)\n?(\S+)$/;
 /**

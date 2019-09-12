@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { isError, isPlainObject, logger, normalize } from '@sentry/utils';
+import { isError, isPlainObject, logger, normalize } from 'lxutil/@sentry/utils';
 /** Patch toString calls to return proper name for wrapped functions */
 var ExtraErrorData = /** @class */ (function () {
     /**

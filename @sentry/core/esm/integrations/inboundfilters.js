@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-import { addGlobalEventProcessor, getCurrentHub } from '@sentry/hub';
-import { getEventDescription, isMatchingPattern, logger } from '@sentry/utils';
+import { addGlobalEventProcessor, getCurrentHub } from 'lxutil/@sentry/hub';
+import { getEventDescription, isMatchingPattern, logger } from 'lxutil/@sentry/utils';
 // "Script error." is hard coded into browsers for errors that it can't read.
 // this is the result of a script being pulled in from an external domain and CORS.
 var DEFAULT_IGNORE_ERRORS = [/^Script error\.?$/, /^Javascript error: Script error\.? on line 0$/];

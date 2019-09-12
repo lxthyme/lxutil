@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { consoleSandbox, dynamicRequire, getGlobalObject, logger, uuid4 } from '@sentry/utils';
+import { consoleSandbox, dynamicRequire, getGlobalObject, logger, uuid4 } from 'lxutil/@sentry/utils';
 import { Scope } from './scope';
 /**
  * API compatibility version of this hub.

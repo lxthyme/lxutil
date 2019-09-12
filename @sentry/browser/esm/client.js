@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-import { API, BaseClient } from '@sentry/core';
-import { getGlobalObject, logger } from '@sentry/utils';
+import { API, BaseClient } from 'lxutil/@sentry/core';
+import { getGlobalObject, logger } from 'lxutil/@sentry/utils';
 import { BrowserBackend } from './backend';
 import { SDK_NAME, SDK_VERSION } from './version';
 /**

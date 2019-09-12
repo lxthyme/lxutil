@@ -1,5 +1,5 @@
-import { getCurrentHub, initAndBind, Integrations as CoreIntegrations } from '@sentry/core';
-import { getGlobalObject } from '@sentry/utils';
+import { getCurrentHub, initAndBind, Integrations as CoreIntegrations } from 'lxutil/@sentry/core';
+import { getGlobalObject } from 'lxutil/@sentry/utils';
 import { BrowserClient } from './client';
 import { wrap as internalWrap } from './helpers';
 import { Breadcrumbs, GlobalHandlers, LinkedErrors, TryCatch, UserAgent } from './integrations';

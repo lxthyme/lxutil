@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("@sentry/types");
-var utils_1 = require("@sentry/utils");
+var types_1 = require("lxutil/@sentry/types");
+var utils_1 = require("lxutil/@sentry/utils");
 var global = utils_1.getGlobalObject();
 /** Send Console API calls as Sentry Events */
 var CaptureConsole = /** @class */ (function () {

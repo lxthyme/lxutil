@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { getGlobalObject, logger } from '@sentry/utils';
+import { getGlobalObject, logger } from 'lxutil/@sentry/utils';
 // See https://github.com/angular/angular.js/blob/v1.4.7/src/minErr.js
 var angularPattern = /^\[((?:[$a-zA-Z0-9]+:)?(?:[$a-zA-Z0-9]+))\] (.*?)\n?(\S+)$/;
 /**

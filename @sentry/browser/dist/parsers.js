@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 var tracekit_1 = require("./tracekit");
 var STACKTRACE_LIMIT = 50;
 /**

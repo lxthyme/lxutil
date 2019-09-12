@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var types_1 = require("@sentry/types");
-var utils_1 = require("@sentry/utils");
+var types_1 = require("lxutil/@sentry/types");
+var utils_1 = require("lxutil/@sentry/utils");
 var base_1 = require("./base");
 var global = utils_1.getGlobalObject();
 /** `fetch` based transport */

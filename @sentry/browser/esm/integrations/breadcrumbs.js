@@ -2,10 +2,10 @@ import * as tslib_1 from "tslib";
 import {
     API,
     getCurrentHub
-} from '@sentry/core';
+} from 'lxutil/@sentry/core';
 import {
     Severity
-} from '@sentry/types';
+} from 'lxutil/@sentry/types';
 import {
     fill,
     getEventDescription,
@@ -17,7 +17,7 @@ import {
     safeJoin,
     supportsHistory,
     supportsNativeFetch,
-} from '@sentry/utils';
+} from 'lxutil/@sentry/utils';
 import {
     breadcrumbEventHandler,
     keypressEventHandler,
@@ -177,7 +177,7 @@ var Breadcrumbs = /** @class */ (function () {
                 var dsn = client && client.getDsn();
                 var origin_t = window.location.origin
                 var host = ''
-                if (host.indexOf('api') >= 0) {
+                if (origin_t.indexOf('m.vaffle.com') >= 0) {
                     host = 'https://api.vaffle.com'
                 } else {
                     host = 'https://apitest.vaffle.com'

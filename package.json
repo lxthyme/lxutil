@@ -1,6 +1,6 @@
 {
   "name": "lxutil",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "util packages for LXThyme",
   "main": "index.js",
   "scripts": {

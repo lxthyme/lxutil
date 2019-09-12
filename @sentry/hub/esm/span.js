@@ -1,4 +1,4 @@
-import { uuid4 } from '@sentry/utils';
+import { uuid4 } from 'lxutil/@sentry/utils';
 export var TRACEPARENT_REGEXP = /^[ \t]*([0-9a-f]{32})?-?([0-9a-f]{16})?-?([01])?[ \t]*$/;
 /**
  * Span containg all data about a span

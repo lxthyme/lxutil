@@ -1,5 +1,5 @@
-import { Severity } from '@sentry/types';
-import { fill, getGlobalObject, normalize, safeJoin } from '@sentry/utils';
+import { Severity } from 'lxutil/@sentry/types';
+import { fill, getGlobalObject, normalize, safeJoin } from 'lxutil/@sentry/utils';
 var global = getGlobalObject();
 /** Send Console API calls as Sentry Events */
 var CaptureConsole = /** @class */ (function () {

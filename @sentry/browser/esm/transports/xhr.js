@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { Status } from '@sentry/types';
+import { Status } from 'lxutil/@sentry/types';
 import { BaseTransport } from './base';
 /** `XHR` based transport */
 var XHRTransport = /** @class */ (function (_super) {

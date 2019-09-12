@@ -1,4 +1,4 @@
-import { urlEncode } from '@sentry/utils';
+import { urlEncode } from 'lxutil/@sentry/utils';
 import { Dsn } from './dsn';
 var SENTRY_API_VERSION = '7';
 /** Helper class to provide urls to different Sentry endpoints. */

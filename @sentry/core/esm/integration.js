@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-import { addGlobalEventProcessor, getCurrentHub } from '@sentry/hub';
-import { logger } from '@sentry/utils';
+import { addGlobalEventProcessor, getCurrentHub } from 'lxutil/@sentry/hub';
+import { logger } from 'lxutil/@sentry/utils';
 export var installedIntegrations = [];
 /** Gets integration to install */
 export function getIntegrationsToSetup(options) {

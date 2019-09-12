@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var hub_1 = require("@sentry/hub");
-var utils_1 = require("@sentry/utils");
+var hub_1 = require("lxutil/@sentry/hub");
+var utils_1 = require("lxutil/@sentry/utils");
 exports.installedIntegrations = [];
 /** Gets integration to install */
 function getIntegrationsToSetup(options) {

@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-import { Status } from '@sentry/types';
-import { getGlobalObject, supportsReferrerPolicy } from '@sentry/utils';
+import { Status } from 'lxutil/@sentry/types';
+import { getGlobalObject, supportsReferrerPolicy } from 'lxutil/@sentry/utils';
 import { BaseTransport } from './base';
 var global = getGlobalObject();
 /** `fetch` based transport */

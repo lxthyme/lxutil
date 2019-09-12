@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var core_1 = require("@sentry/core");
+var core_1 = require("lxutil/@sentry/core");
 var parsers_1 = require("../parsers");
 var tracekit_1 = require("../tracekit");
 var DEFAULT_KEY = 'cause';

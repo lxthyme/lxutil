@@ -1,4 +1,4 @@
-import { logger, SentryError } from '@sentry/utils';
+import { logger, SentryError } from 'lxutil/@sentry/utils';
 import { NoopTransport } from './transports/noop';
 /**
  * This is the base implemention of a Backend.

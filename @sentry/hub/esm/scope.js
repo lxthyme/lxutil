@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { getGlobalObject, isThenable, normalize, SyncPromise } from '@sentry/utils';
+import { getGlobalObject, isThenable, normalize, SyncPromise } from 'lxutil/@sentry/utils';
 import { Span } from './span';
 /**
  * Holds additional event information. {@link Scope.applyToEvent} will be

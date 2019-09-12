@@ -1,6 +1,6 @@
 // tslint:disable
 import * as tslib_1 from "tslib";
-import { getGlobalObject, isError, isErrorEvent, normalize } from '@sentry/utils';
+import { getGlobalObject, isError, isErrorEvent, normalize } from 'lxutil/@sentry/utils';
 /**
  * TraceKit - Cross brower stack traces
  *

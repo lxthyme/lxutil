@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-import { getCurrentHub } from '@sentry/core';
-import { addExceptionTypeValue, isString, logger, normalize, truncate } from '@sentry/utils';
+import { getCurrentHub } from 'lxutil/@sentry/core';
+import { addExceptionTypeValue, isString, logger, normalize, truncate } from 'lxutil/@sentry/utils';
 import { shouldIgnoreOnError } from '../helpers';
 import { eventFromStacktrace } from '../parsers';
 import { _installGlobalHandler, _installGlobalUnhandledRejectionHandler, _subscribe, } from '../tracekit';

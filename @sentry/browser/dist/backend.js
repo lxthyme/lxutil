@@ -1,8 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var core_1 = require("@sentry/core");
-var types_1 = require("@sentry/types");
-var utils_1 = require("@sentry/utils");
+var core_1 = require("lxutil/@sentry/core");
+var types_1 = require("lxutil/@sentry/types");
+var utils_1 = require("lxutil/@sentry/utils");
 var parsers_1 = require("./parsers");
 var tracekit_1 = require("./tracekit");
 var transports_1 = require("./transports");

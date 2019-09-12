@@ -264,7 +264,6 @@
     // 鼠标或手指的滑动事件
     me.touchmoveEvent = function (e) {
       // console.log('touchmoveEvent: ', e)
-      // debugger
       if (!me.startPoint) return;
 
       var scrollTop = me.getScrollTop(); // 当前滚动条的距离

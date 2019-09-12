@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { isPrimitive, isThenable, logger, SyncPromise, truncate, uuid4 } from '@sentry/utils';
+import { isPrimitive, isThenable, logger, SyncPromise, truncate, uuid4 } from 'lxutil/@sentry/utils';
 import { Dsn } from './dsn';
 import { setupIntegrations } from './integration';
 /**

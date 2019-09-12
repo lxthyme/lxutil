@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-import { captureException, getCurrentHub, withScope } from '@sentry/core';
-import { addExceptionTypeValue, isString, normalize } from '@sentry/utils';
+import { captureException, getCurrentHub, withScope } from 'lxutil/@sentry/core';
+import { addExceptionTypeValue, isString, normalize } from 'lxutil/@sentry/utils';
 var debounceDuration = 1000;
 var keypressTimeout;
 var lastCapturedEvent;

@@ -1,8 +1,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var core_1 = require("@sentry/core");
-var types_1 = require("@sentry/types");
-var utils_1 = require("@sentry/utils");
+var core_1 = require("lxutil/@sentry/core");
+var types_1 = require("lxutil/@sentry/types");
+var utils_1 = require("lxutil/@sentry/utils");
 var helpers_1 = require("../helpers");
 var global = utils_1.getGlobalObject();
 var lastHref;

@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 exports.TRACEPARENT_REGEXP = /^[ \t]*([0-9a-f]{32})?-?([0-9a-f]{16})?-?([01])?[ \t]*$/;
 /**
  * Span containg all data about a span

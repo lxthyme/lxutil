@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var types_1 = require("@sentry/types");
+var types_1 = require("lxutil/@sentry/types");
 /** Noop transport */
 var NoopTransport = /** @class */ (function () {
     function NoopTransport() {

@@ -1,5 +1,5 @@
-import { API } from '@sentry/core';
-import { PromiseBuffer, SentryError } from '@sentry/utils';
+import { API } from 'lxutil/@sentry/core';
+import { PromiseBuffer, SentryError } from 'lxutil/@sentry/utils';
 /** Base Transport class implementation */
 var BaseTransport = /** @class */ (function () {
     function BaseTransport(options) {

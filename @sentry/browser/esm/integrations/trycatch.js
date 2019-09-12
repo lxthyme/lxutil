@@ -1,4 +1,4 @@
-import { fill, getGlobalObject } from '@sentry/utils';
+import { fill, getGlobalObject } from 'lxutil/@sentry/utils';
 import { wrap } from '../helpers';
 /** Wrap timer functions and event targets to catch errors and provide better meta data */
 var TryCatch = /** @class */ (function () {

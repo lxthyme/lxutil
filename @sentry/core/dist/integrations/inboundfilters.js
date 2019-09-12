@@ -1,7 +1,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var hub_1 = require("@sentry/hub");
-var utils_1 = require("@sentry/utils");
+var hub_1 = require("lxutil/@sentry/hub");
+var utils_1 = require("lxutil/@sentry/utils");
 // "Script error." is hard coded into browsers for errors that it can't read.
 // this is the result of a script being pulled in from an external domain and CORS.
 var DEFAULT_IGNORE_ERRORS = [/^Script error\.?$/, /^Javascript error: Script error\.? on line 0$/];

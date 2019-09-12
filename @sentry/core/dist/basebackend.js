@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 var noop_1 = require("./transports/noop");
 /**
  * This is the base implemention of a Backend.

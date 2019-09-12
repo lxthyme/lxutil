@@ -1,7 +1,7 @@
 import * as tslib_1 from "tslib";
-import { BaseBackend } from '@sentry/core';
-import { Severity } from '@sentry/types';
-import { addExceptionTypeValue, isDOMError, isDOMException, isError, isErrorEvent, isPlainObject, supportsFetch, SyncPromise, } from '@sentry/utils';
+import { BaseBackend } from 'lxutil/@sentry/core';
+import { Severity } from 'lxutil/@sentry/types';
+import { addExceptionTypeValue, isDOMError, isDOMException, isError, isErrorEvent, isPlainObject, supportsFetch, SyncPromise, } from 'lxutil/@sentry/utils';
 import { eventFromPlainObject, eventFromStacktrace, prepareFramesForEvent } from './parsers';
 import { _computeStackTrace } from './tracekit';
 import { FetchTransport, XHRTransport } from './transports';

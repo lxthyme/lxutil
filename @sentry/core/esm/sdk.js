@@ -1,5 +1,5 @@
-import { getCurrentHub } from '@sentry/hub';
-import { logger } from '@sentry/utils';
+import { getCurrentHub } from 'lxutil/@sentry/hub';
+import { logger } from 'lxutil/@sentry/utils';
 /**
  * Internal function to create a new SDK client instance. The client is
  * installed and then bound to the current scope.

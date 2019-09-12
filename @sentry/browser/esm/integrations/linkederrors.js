@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { addGlobalEventProcessor, getCurrentHub } from '@sentry/core';
+import { addGlobalEventProcessor, getCurrentHub } from 'lxutil/@sentry/core';
 import { exceptionFromStacktrace } from '../parsers';
 import { _computeStackTrace } from '../tracekit';
 var DEFAULT_KEY = 'cause';

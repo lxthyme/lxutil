@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { SentryError } from '@sentry/utils';
+import { SentryError } from 'lxutil/@sentry/utils';
 /** Regular expression used to parse a Dsn. */
 var DSN_REGEX = /^(?:(\w+):)\/\/(?:(\w+)(?::(\w+))?@)([\w\.-]+)(?::(\d+))?\/(.+)/;
 /** Error message */

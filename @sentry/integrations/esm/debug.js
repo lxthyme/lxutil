@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { consoleSandbox } from '@sentry/utils';
+import { consoleSandbox } from 'lxutil/@sentry/utils';
 /** JSDoc */
 var Debug = /** @class */ (function () {
     /**

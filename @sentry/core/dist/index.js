@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var minimal_1 = require("@sentry/minimal");
+var minimal_1 = require("lxutil/@sentry/minimal");
 exports.addBreadcrumb = minimal_1.addBreadcrumb;
 exports.captureException = minimal_1.captureException;
 exports.captureEvent = minimal_1.captureEvent;
@@ -12,7 +12,7 @@ exports.setTag = minimal_1.setTag;
 exports.setTags = minimal_1.setTags;
 exports.setUser = minimal_1.setUser;
 exports.withScope = minimal_1.withScope;
-var hub_1 = require("@sentry/hub");
+var hub_1 = require("lxutil/@sentry/hub");
 exports.addGlobalEventProcessor = hub_1.addGlobalEventProcessor;
 exports.getCurrentHub = hub_1.getCurrentHub;
 exports.getHubFromCarrier = hub_1.getHubFromCarrier;

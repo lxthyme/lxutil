@@ -1,4 +1,4 @@
-import { getGlobalObject, logger } from '@sentry/utils';
+import { getGlobalObject, logger } from 'lxutil/@sentry/utils';
 /** JSDoc */
 var Ember = /** @class */ (function () {
     /**

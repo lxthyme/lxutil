@@ -1,5 +1,5 @@
-export { addBreadcrumb, captureException, captureEvent, captureMessage, configureScope, setContext, setExtra, setExtras, setTag, setTags, setUser, withScope, } from '@sentry/minimal';
-export { addGlobalEventProcessor, getCurrentHub, getHubFromCarrier, Hub, Scope, Span } from '@sentry/hub';
+export { addBreadcrumb, captureException, captureEvent, captureMessage, configureScope, setContext, setExtra, setExtras, setTag, setTags, setUser, withScope, } from 'lxutil/@sentry/minimal';
+export { addGlobalEventProcessor, getCurrentHub, getHubFromCarrier, Hub, Scope, Span } from 'lxutil/@sentry/hub';
 export { API } from './api';
 export { BaseClient } from './baseclient';
 export { BaseBackend } from './basebackend';

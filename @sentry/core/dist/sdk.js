@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var hub_1 = require("@sentry/hub");
-var utils_1 = require("@sentry/utils");
+var hub_1 = require("lxutil/@sentry/hub");
+var utils_1 = require("lxutil/@sentry/utils");
 /**
  * Internal function to create a new SDK client instance. The client is
  * installed and then bound to the current scope.

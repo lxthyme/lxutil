@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { getCurrentHub } from '@sentry/hub';
+import { getCurrentHub } from 'lxutil/@sentry/hub';
 /**
  * This calls a function on the current hub.
  * @param method function to call on hub.

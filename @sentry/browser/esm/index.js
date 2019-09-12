@@ -1,11 +1,11 @@
 import * as tslib_1 from "tslib";
-export { Severity, Status, } from '@sentry/types';
-export { addGlobalEventProcessor, addBreadcrumb, captureException, captureEvent, captureMessage, configureScope, getHubFromCarrier, getCurrentHub, Hub, Scope, setContext, setExtra, setExtras, setTag, setTags, setUser, Span, withScope, } from '@sentry/core';
+export { Severity, Status, } from 'lxutil/@sentry/types';
+export { addGlobalEventProcessor, addBreadcrumb, captureException, captureEvent, captureMessage, configureScope, getHubFromCarrier, getCurrentHub, Hub, Scope, setContext, setExtra, setExtras, setTag, setTags, setUser, Span, withScope, } from 'lxutil/@sentry/core';
 export { BrowserClient } from './client';
 export { defaultIntegrations, forceLoad, init, lastEventId, onLoad, showReportDialog, flush, close, wrap } from './sdk';
 export { SDK_NAME, SDK_VERSION } from './version';
-import { Integrations as CoreIntegrations } from '@sentry/core';
-import { getGlobalObject } from '@sentry/utils';
+import { Integrations as CoreIntegrations } from 'lxutil/@sentry/core';
+import { getGlobalObject } from 'lxutil/@sentry/utils';
 import * as BrowserIntegrations from './integrations';
 import * as Transports from './transports';
 var windowIntegrations = {};

@@ -1,5 +1,5 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 var helpers_1 = require("../helpers");
 /** Wrap timer functions and event targets to catch errors and provide better meta data */
 var TryCatch = /** @class */ (function () {

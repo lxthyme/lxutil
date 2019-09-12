@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 var span_1 = require("./span");
 /**
  * Holds additional event information. {@link Scope.applyToEvent} will be

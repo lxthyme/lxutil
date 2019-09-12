@@ -1,4 +1,4 @@
-import { basename, relative } from '@sentry/utils';
+import { basename, relative } from 'lxutil/@sentry/utils';
 /** Rewrite event frames paths */
 var RewriteFrames = /** @class */ (function () {
     /**

@@ -1,4 +1,4 @@
-import { getGlobalObject, isPlainObject, logger } from '@sentry/utils';
+import { getGlobalObject, isPlainObject, logger } from 'lxutil/@sentry/utils';
 /** JSDoc */
 var Vue = /** @class */ (function () {
     /**

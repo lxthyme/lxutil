@@ -1,7 +1,7 @@
 // tslint:disable
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
-var utils_1 = require("@sentry/utils");
+var utils_1 = require("lxutil/@sentry/utils");
 /**
  * TraceKit - Cross brower stack traces
  *

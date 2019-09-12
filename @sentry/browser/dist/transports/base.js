@@ -1,6 +1,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@sentry/core");
-var utils_1 = require("@sentry/utils");
+var core_1 = require("lxutil/@sentry/core");
+var utils_1 = require("lxutil/@sentry/utils");
 /** Base Transport class implementation */
 var BaseTransport = /** @class */ (function () {
     function BaseTransport(options) {

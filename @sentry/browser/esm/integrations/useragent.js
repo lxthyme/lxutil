@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
-import { addGlobalEventProcessor, getCurrentHub } from '@sentry/core';
-import { getGlobalObject } from '@sentry/utils';
+import { addGlobalEventProcessor, getCurrentHub } from 'lxutil/@sentry/core';
+import { getGlobalObject } from 'lxutil/@sentry/utils';
 var global = getGlobalObject();
 /** UserAgent */
 var UserAgent = /** @class */ (function () {

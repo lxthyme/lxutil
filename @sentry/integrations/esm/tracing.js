@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-import { fill, getGlobalObject, isMatchingPattern, logger, supportsNativeFetch } from '@sentry/utils';
+import { fill, getGlobalObject, isMatchingPattern, logger, supportsNativeFetch } from 'lxutil/@sentry/utils';
 /**
  * Tracing Integration
  */
