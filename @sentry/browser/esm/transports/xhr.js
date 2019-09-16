@@ -26,7 +26,19 @@ var XHRTransport = /** @class */ (function (_super) {
                 reject(request);
             };
             request.open('POST', _this.url);
-            request.send(JSON.stringify(event));
+            var p = {
+                loginfo: JSON.stringify(event)
+            }
+            var headers = {}
+            if (window.login) {
+                request.setRequestHeader('serial-number', window.login.checkDeviceUUID());
+            }
+            // debugger
+            request.setRequestHeader('lang', 'en');
+            request.setRequestHeader('version', '3.6.1');
+            request.setRequestHeader('Content-Type', 'application/json');
+            request.send(JSON.stringify(p));
+            // request.send(JSON.stringify(event));
         }));
     };
     return XHRTransport;

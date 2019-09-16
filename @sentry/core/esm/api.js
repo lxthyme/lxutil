@@ -25,7 +25,8 @@ var API = /** @class */ (function () {
         };
         // Auth is intentionally sent as part of query string (NOT as custom HTTP header)
         // to avoid preflight CORS requests
-        return this.getStoreEndpoint() + "?" + urlEncode(auth);
+        // return this.getStoreEndpoint() + "?" + urlEncode(auth);
+        return this.getStoreEndpoint();
     };
     /** Returns the base path of the url including the port. */
     API.prototype._getBaseUrl = function () {
@@ -37,7 +38,8 @@ var API = /** @class */ (function () {
     /** Returns only the path component for the store endpoint. */
     API.prototype.getStoreEndpointPath = function () {
         var dsn = this._dsnObject;
-        return (dsn.path ? "/" + dsn.path : '') + "/api/" + dsn.projectId + "/store/";
+        // return (dsn.path ? "/" + dsn.path : '') + "/api/" + dsn.projectId + "/store/";
+        return (dsn.path ? "/" + dsn.path : '');
     };
     /** Returns an object that can be used in request headers. */
     API.prototype.getRequestHeaders = function (clientName, clientVersion) {
