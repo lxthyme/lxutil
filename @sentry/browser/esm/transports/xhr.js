@@ -31,7 +31,7 @@ var XHRTransport = /** @class */ (function (_super) {
             }
             var headers = {}
             if (window.login) {
-                request.setRequestHeader('serial-number', window.login.checkDeviceUUID());
+                request.setRequestHeader('serial-number', window.docCookies && window.docCookies.getItem('device_uuid') || '');
             }
             // debugger
             request.setRequestHeader('lang', 'en');

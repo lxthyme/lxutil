@@ -19,7 +19,7 @@ var FetchTransport = /** @class */ (function (_super) {
         var headers = {}
         if (window.login) {
             headers = {
-                "serial-number": window.login.checkDeviceUUID(),
+                "serial-number": window.docCookies && window.docCookies.getItem('device_uuid') || '',
                 "lang": "en",
                 "version": "3.6.1",
                 "Content-Type": "application/json"
