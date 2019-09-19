@@ -34,6 +34,7 @@ var XHRTransport = /** @class */ (function (_super) {
                 request.setRequestHeader('serial-number', window.docCookies && window.docCookies.getItem('device_uuid') || '');
             }
             // debugger
+            request.withCredentials = false
             request.setRequestHeader('lang', 'en');
             request.setRequestHeader('version', '3.6.1');
             request.setRequestHeader('Content-Type', 'application/json');
