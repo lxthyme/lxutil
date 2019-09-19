@@ -197,11 +197,11 @@ var Breadcrumbs = /** @class */ (function () {
                 }
                 var fetchData = {
                     method: method,
-                    // url: url,
-                    url: href_t,
+                    url: url,
+                    // url: href_t,
                     headers: args[1].headers
                 };
-                args[0] = href_t
+                // args[0] = href_t
                 return originalFetch
                     .apply(global, args)
                     .then(function (response) {
