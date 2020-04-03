@@ -16,14 +16,13 @@ var FetchTransport = /** @class */ (function (_super) {
         var p = {
             loginfo: JSON.stringify(event)
         }
-        var headers = {}
-        if (window.login) {
-            headers = {
-                "serial-number": window.docCookies && window.docCookies.getItem('device_uuid') || '',
-                "lang": "en",
-                "version": "3.6.1",
-                "Content-Type": "application/json"
-            }
+        var headers = {
+            "lang": "en",
+            "version": "3.6.1",
+            "Content-Type": "application/json"
+        }
+        if (typeof window !== 'undefined') {
+            headers["serial-number"] = window.docCookies && window.docCookies.getItem('device_uuid') || ''
         }
         var defaultOptions = {
             body: JSON.stringify(p),

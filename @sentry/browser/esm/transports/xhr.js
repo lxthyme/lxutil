@@ -30,7 +30,7 @@ var XHRTransport = /** @class */ (function (_super) {
                 loginfo: JSON.stringify(event)
             }
             var headers = {}
-            if (window.login) {
+            if (typeof window !== 'undefined') {
                 request.setRequestHeader('serial-number', window.docCookies && window.docCookies.getItem('device_uuid') || '');
             }
             // debugger
