@@ -176,7 +176,7 @@ var Breadcrumbs = /** @class */ (function () {
                 var client = getCurrentHub().getClient();
                 var dsn = client && client.getDsn();
                 var origin_t = window.location.origin
-                var host = process.env.mApi
+                var host = process.env.BASE_URL
                 var href_t = host + '/web/error/log'
                 if (dsn) {
                     var filterUrl = new API(dsn).getStoreEndpoint();
