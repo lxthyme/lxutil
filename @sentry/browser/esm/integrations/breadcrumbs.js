@@ -176,12 +176,7 @@ var Breadcrumbs = /** @class */ (function () {
                 var client = getCurrentHub().getClient();
                 var dsn = client && client.getDsn();
                 var origin_t = window.location.origin
-                var host = ''
-                if (origin_t.indexOf('m.vaffle.com') >= 0) {
-                    host = 'https://api.vaffle.com'
-                } else {
-                    host = 'https://apitest.vaffle.com'
-                }
+                var host = process.env.mApi
                 var href_t = host + '/web/error/log'
                 if (dsn) {
                     var filterUrl = new API(dsn).getStoreEndpoint();
