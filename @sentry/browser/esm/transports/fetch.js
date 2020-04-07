@@ -17,6 +17,7 @@ var FetchTransport = /** @class */ (function (_super) {
             loginfo: JSON.stringify(event)
         }
         var headers = {
+            "type": "web",
             "lang": "en",
             "version": "3.6.1",
             "Content-Type": "application/json"

@@ -35,6 +35,7 @@ var XHRTransport = /** @class */ (function (_super) {
             }
             // debugger
             request.withCredentials = false
+            request.setRequestHeader('type', 'web');
             request.setRequestHeader('lang', 'en');
             request.setRequestHeader('version', '3.6.1');
             request.setRequestHeader('Content-Type', 'application/json');
